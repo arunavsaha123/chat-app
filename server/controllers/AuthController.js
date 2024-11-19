@@ -1,10 +1,10 @@
 import User from "../models/UserModel";
-import { sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const maxAge = 3*24*60*60*1000;
 
 const createToken = (email, password) =>{
-    return sign({ email, password }, process.env.JWT_SECRET, { expiresIn: maxAge });
+    return jwt.sign({ email, password }, process.env.JWT_SECRET, { expiresIn: maxAge });
 };
 
 export const signup = async (request, response, next) => {
